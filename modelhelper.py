@@ -4,8 +4,9 @@ from .config import Config
 class ModelHelper:
     """Database helper methods"""
 
-    def getenginestring(self, config_section):
-        config = Config()
+    def getenginestring(self, config_section, config = None):
+        if config == None:
+            config = Config()
         dbtype = config.get(config_section, 'dbtype')
         dbname = config.get(config_section, 'dbname')
 
