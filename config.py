@@ -25,12 +25,17 @@ class Config:
     def config(self):
         return self._config
 
-    def get_section(self, section, default = None):
+    def set_default(self, section, default):
         if self._config.has_section(section):
-            return self._config._sections[section]
+            return
         self._config._sections[section] = default
         with open(self._configfilename, 'w') as configfile:
             self._config.write(configfile)
+
+    def get_section(self, section):
+        if self._config.has_section(section):
+            return self._config._sections[section]
+        return None
 
     def get(self, section, option):
         return self._config.get(section, option)
